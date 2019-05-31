@@ -1,17 +1,19 @@
 package nickgao.com.coolweathertest.ui.area
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.choose_area.*
 import nickgao.com.coolweathertest.R
+import nickgao.com.coolweathertest.databinding.ChooseAreaBindingImpl
 import nickgao.com.coolweathertest.ui.MainActivity
 import nickgao.com.coolweathertest.ui.WeatherActivity
 import nickgao.com.coolweathertest.util.InjectorUtil
@@ -19,13 +21,13 @@ import nickgao.com.coolweathertest.util.InjectorUtil
 class ChooseAreaFragment  : Fragment(){
 
     private val viewModel by lazy { ViewModelProviders.of(this, InjectorUtil.getChooseAreaModelFactory()).get(ChooseAreaViewModel::class.java) }
-    private var progressDialog: ProgressDialog? = null
+//    private var progressDialog: ProgressDialog? = null
     private lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.choose_area, container, false)
-//        val binding = DataBindingUtil.bind<ChooseAreaBindingImpl>(view)
-//        binding?.viewModel = viewModel
+        val binding = DataBindingUtil.bind<ChooseAreaBindingImpl>(view)
+        binding?.viewModel = viewModel
         return view
     }
 
@@ -80,6 +82,7 @@ class ChooseAreaFragment  : Fragment(){
             }
         })
         if (viewModel.dataList.isEmpty()) {
+            Log.d("TAG","<<<<getProvinces=")
             viewModel.getProvinces()
         }
     }
@@ -88,19 +91,19 @@ class ChooseAreaFragment  : Fragment(){
      * 显示进度对话框
      */
     private fun showProgressDialog() {
-        if (progressDialog == null) {
-            progressDialog = ProgressDialog(activity)
-            progressDialog?.setMessage("正在加载...")
-            progressDialog?.setCanceledOnTouchOutside(false)
-        }
-        progressDialog?.show()
+//        if (progressDialog == null) {
+//            progressDialog = ProgressDialog(activity)
+//            progressDialog?.setMessage("正在加载...")
+//            progressDialog?.setCanceledOnTouchOutside(false)
+//        }
+//        progressDialog?.show()
     }
 
     /**
      * 关闭进度对话框
      */
     private fun closeProgressDialog() {
-        progressDialog?.dismiss()
+       // progressDialog?.dismiss()
     }
 
     companion object {

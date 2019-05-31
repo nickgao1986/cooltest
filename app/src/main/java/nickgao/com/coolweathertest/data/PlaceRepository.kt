@@ -1,6 +1,7 @@
 package nickgao.com.coolweathertest.data
 
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import nickgao.com.coolweathertest.data.db.PlaceDao
@@ -10,8 +11,10 @@ class PlaceRepository private constructor(private val placeDao: PlaceDao, privat
 
     suspend fun getProvinceList() = withContext(Dispatchers.IO) {
         var list = placeDao.getProvinceList()
+        Log.d("TAG","<<<<getProvinceList="+list+"network="+network)
         if (list.isEmpty()) {
             list = network.fetchProvinceList()
+            Log.d("TAG","<<<<list111="+list)
             placeDao.saveProvinceList(list)
         }
         list
