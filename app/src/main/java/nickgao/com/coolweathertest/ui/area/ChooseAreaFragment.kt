@@ -31,9 +31,9 @@ class ChooseAreaFragment  : Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        adapter = ChooseAreaAdapter(context!!, R.layout.simple_item, viewModel.dataList)
-//        listView.adapter = adapter
-//        observe()
+        adapter = ChooseAreaAdapter(context!!, R.layout.simple_item, viewModel.dataList)
+        listView.adapter = adapter
+        observe()
     }
 
 
