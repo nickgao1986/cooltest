@@ -1,0 +1,10 @@
+<litepal>
+    <dbname value="cool_weather" />
+    <version value="1" />
+    <list>
+        <mapping class="nickgao.com.coolweathertest.data.db.model.place.Province" />
+        <mapping class="nickgao.com.coolweathertest.data.db.model.place.City" />
+        <mapping class="nickgao.com.coolweathertest.data.db.model.place.County" />
+    </list>
+    <storage value="external" />
+</litepal>
