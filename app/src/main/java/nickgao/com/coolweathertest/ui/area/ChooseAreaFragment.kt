@@ -1,5 +1,6 @@
 package nickgao.com.coolweathertest.ui.area
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,7 +23,7 @@ import nickgao.com.coolweathertest.util.InjectorUtil
 class ChooseAreaFragment  : Fragment(){
 
     private val viewModel by lazy { ViewModelProviders.of(this, InjectorUtil.getChooseAreaModelFactory()).get(ChooseAreaViewModel::class.java) }
-//    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: ProgressBar? = null
     private lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -103,7 +105,7 @@ class ChooseAreaFragment  : Fragment(){
      * 关闭进度对话框
      */
     private fun closeProgressDialog() {
-       // progressDialog?.dismiss()
+      //  progressDialog?.dismiss()
     }
 
     companion object {

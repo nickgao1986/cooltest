@@ -1,6 +1,7 @@
 package nickgao.com.coolweathertest.data.network
 
 import nickgao.com.coolweathertest.data.network.api.PlaceService
+import nickgao.com.coolweathertest.data.network.api.WeatherService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,7 +14,7 @@ class CoolWeatherNetwork {
 
     private val placeService = ServiceCreator.create(PlaceService::class.java)
 
-    //private val weatherService = ServiceCreator.create(WeatherService::class.java)
+    private val weatherService = ServiceCreator.create(WeatherService::class.java)
 
     suspend fun fetchProvinceList() = placeService.getProvinces().await()
 
@@ -21,6 +22,9 @@ class CoolWeatherNetwork {
 
     suspend fun fetchCountyList(provinceId: Int, cityId: Int) = placeService.getCounties(provinceId, cityId).await()
 
+    suspend fun fetchWeather(weatherId: String) = weatherService.getWeather(weatherId).await()
+
+    suspend fun fetchBingPic() = weatherService.getBingPic().await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

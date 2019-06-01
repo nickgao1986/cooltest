@@ -21,6 +21,8 @@ class ChooseAreaAdapter(context: Context, private val resId: Int, private val da
             bind = convertView.tag as SimpleItemBinding
             convertView
         }
+
+
         bind?.data = dataList[position]
         return view
     }
