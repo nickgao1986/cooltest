@@ -42,6 +42,9 @@ dependencies {
     implementation 'org.litepal.android:kotlin:3.0.0'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+    implementation "org.jetbrains.anko:anko:0.10.5"
     api project(path: ':baselibrary')
 
 }

@@ -8,21 +8,19 @@ import java.util.concurrent.TimeUnit
 
 object OkHttpUtil {
 
-    private var mOkHttpClient: OkHttpClient? = null
+    private lateinit var mOkHttpClient: OkHttpClient
 
     public enum class REQUEST_TYPE {
         POST, PUT, DELETE
     }
 
     fun init() {
-        if (mOkHttpClient == null) {
-            val clientBuilder = OkHttpClient()
-                .newBuilder()
-                .connectTimeout(5000, TimeUnit.MILLISECONDS)
-                .readTimeout(5000, TimeUnit.MILLISECONDS)
-                .writeTimeout(5000, TimeUnit.MILLISECONDS)
-            mOkHttpClient = clientBuilder.build()
-        }
+        val clientBuilder = OkHttpClient()
+            .newBuilder()
+            .connectTimeout(5000, TimeUnit.MILLISECONDS)
+            .readTimeout(5000, TimeUnit.MILLISECONDS)
+            .writeTimeout(5000, TimeUnit.MILLISECONDS)
+        mOkHttpClient = clientBuilder.build()
     }
 
 
@@ -33,11 +31,10 @@ object OkHttpUtil {
             val commonHap = ApiCommonParams.fetchCommonsParams()
             url = getFinalUrl(url, commonHap)
             val request = Request.Builder().url(url).build()
-            call = mOkHttpClient!!.newCall(request)
-            call!!.enqueue(okHttpCallback)
+            call = mOkHttpClient?.newCall(request)
+            call?.enqueue(okHttpCallback)
         } catch (e: Throwable) {
             e.printStackTrace()
-            okHttpCallback.onFailure(call!!, IOException("get", e))
         }
 
     }

@@ -10,16 +10,16 @@ import org.json.JSONTokener
 
 
 abstract class OkHttpCallback : Callback {
-    protected var mOkHandler: Handler? = null
 
     protected val isPostMainThread: Boolean
         get() = true
 
 
     var okHandler: Handler? = null
-        set(value) {
-            field = Handler(Looper.getMainLooper())
+        get() {
+            return Handler(Looper.getMainLooper())
         }
+
 
     abstract fun onSuccess(call: Call, response: JSONObject)
 

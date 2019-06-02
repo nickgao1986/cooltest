@@ -9,8 +9,10 @@ import org.json.JSONObject
 internal class GetQuestionInfoApi : ApiUtil() {
 
 
-    override var url: String = "http://guolin.tech/api/china"
-        get() = field
+//    override var url: String = "http://guolin.tech/api/china"
+    override var url: String = "http://10.0.2.2/test"
+
+    get() = field
         set(value) {
             field = value;
         }

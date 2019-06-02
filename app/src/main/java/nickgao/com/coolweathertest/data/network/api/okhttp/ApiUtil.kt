@@ -26,8 +26,8 @@ abstract class ApiUtil {
     protected var mApiListener: ApiListener? = null
 
 
-    inner class myHttpCallBack:OkHttpCallback(){
 
+    private var mSendListener :OkHttpCallback = object:OkHttpCallback(){
         override fun onSuccess(call: Call, response: JSONObject) {
             if (null != response) {
                 mStatus = response.optString("status")
@@ -56,7 +56,6 @@ abstract class ApiUtil {
             }
         }
     }
-    private var mSendListener :myHttpCallBack = myHttpCallBack()
 
     protected val isBackInMainThread: Boolean
         get() = true
@@ -64,7 +63,7 @@ abstract class ApiUtil {
     private val mBodyMap = HashMap<String, String>()
 
     val isSuccess: Boolean
-        get() = "0" == mStatus || "200" == mStatus || "success" == mStatus
+        get() = ("0" == mStatus || "200" == mStatus || "success" == mStatus)
 
 
     /**
